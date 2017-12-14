@@ -52,8 +52,7 @@ export default class Login extends React.Component {
                 block
                 bsSize="large"
                 disabled={!this.validateForm()}
-                type="submit"
-            >
+                type="submit">
               Login
             </Button>
           </form>

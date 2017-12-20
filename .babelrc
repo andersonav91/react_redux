@@ -1,8 +1,9 @@
 {
     "presets":[
-        "es2015", "react"
+        "react", "stage-0", "env", "flow", "es2017"
     ],
     "plugins": [
-        "transform-class-properties"
+        "transform-class-properties",
+        "lodash"
     ]
 }

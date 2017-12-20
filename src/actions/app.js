@@ -10,7 +10,6 @@ export function setLoadingApp(loading){
 
 // setLoadingAppToStore
 export const setLoadingAppToStore = (loading) => (dispatch) => {
-    console.log(loading);
     dispatch(setLoadingApp(loading));
 }
 

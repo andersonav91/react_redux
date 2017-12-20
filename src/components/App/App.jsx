@@ -10,6 +10,10 @@ import {
 } from 'react-router-dom';
 
 export default class App extends React.Component {
+  componentDidMount(){
+
+  }
+
   render() {
     return (
       <Provider store={store}>

@@ -32,7 +32,7 @@ export class Login extends Component{
     }
 
     handleLogin = event => {
-        console.log(this.props);
+        console.log(this.props.reducers);
         const dispatch = this.props.dispatch;
         this.props.dispatch(loginUserToStore(this.state.user));
         event.preventDefault();

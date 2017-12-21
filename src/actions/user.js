@@ -39,6 +39,7 @@ export const loginUserToStore = (user) => (dispatch) => {
   .then((data) => {
     user.token = data.response.token;
     user.role = data.response.role;
+    delete user.password;
     dispatch(loginUser(user));
     dispatch(setLoadingAppToStore(false)); // loading = false
   })

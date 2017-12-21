@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import {
-    Link
-} from 'react-router-dom';
-import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from "react-bootstrap";
 import { connect } from 'react-redux';
-import "./Toolbar.scss";
 import { bindActionCreators } from 'redux';
+import "./Toolbar.scss";
 
 export class Toolbar extends Component {
 
@@ -14,24 +10,19 @@ export class Toolbar extends Component {
     }
 
     render() {
+        var FaDashboard = require('react-icons/lib/fa/dashboard');
+        var FaUser = require('react-icons/lib/fa/user');
+        var FaGroup = require('react-icons/lib/fa/group');
+        var FaEnvelope = require('react-icons/lib/fa/envelope');
         return (
-            <div>
-                {
-                    this.props.loading && (
-                        <div className="loading">Loading</div>
-                    )
-                }
-                <Navbar>
-                    <Navbar.Header>
-                        <Navbar.Brand>
-                            <a href="#">React-Bootstrap</a>
-                        </Navbar.Brand>
-                    </Navbar.Header>
-                    <Nav>
-                        <NavItem eventKey={1} componentClass={Link} href="/login" to="/login">Login</NavItem>
-                    </Nav>
-                </Navbar>
-            </div>
+            <ul className="nav navbar-nav navbar-left menu">
+                <li><a id="dashboard" href="#" appentrypoint="true" role="pageLink" data-page="dashboard" className="active"><span data-page="dashboard" aria-hidden="true"></span><p className="title_menu"><FaDashboard /> Tablero</p></a></li>
+                <li><a id="client" href="#" role="entityLink" data-entity="client"><span data-entity="client" aria-hidden="true"></span><p className="title_menu"><FaUser /> Clientes</p></a></li>
+                <li><a id="user" href="#" role="entityLink" data-entity="user"><span aria-hidden="true" data-entity="user"></span><p className="title_menu"><FaUser /> Usuarios</p></a></li>
+                <li><a id="sms_group" href="#" role="entityLink" data-entity="sms_group"><span aria-hidden="true" data-entity="sms_group"></span><p className="title_menu"><FaGroup /> Grupos</p></a></li>
+                <li><a id="member" href="#" role="entityLink" data-entity="member"><span data-entity="member" aria-hidden="true"></span><p className="title_menu"><FaUser /> Miembros</p></a></li>
+                <li><a id="parent_campaign" href="#" role="entityLink" data-entity="parent_campaign"><span data-entity="parent_campaign" aria-hidden="true"></span><p className="title_menu"><FaEnvelope /> Campañas</p></a></li>
+            </ul>
         );
     }
 }
@@ -39,7 +30,7 @@ export class Toolbar extends Component {
 // Subscribe State
 function mapStateToProps(state) {
     return {
-        loading: state.appReducer.loading
+        loggedIn: state.userReducer.loggedIn
     };
 }
 

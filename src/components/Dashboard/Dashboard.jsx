@@ -1,9 +1,8 @@
 import React from 'react';
 import Toolbar from './../Toolbar/Toolbar.jsx';
-import Content from './../Content/Content.jsx';
 import { Col } from "react-bootstrap";
 
-export default class Main extends React.Component {
+export default class Dashboard extends React.Component {
   render() {
     return (
     <div>
@@ -11,7 +10,7 @@ export default class Main extends React.Component {
             <Toolbar/>
         </Col>
         <Col xs={12} md={10}>
-            <Content/>
+            Dashboard
         </Col>
     </div>
     );

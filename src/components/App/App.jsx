@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import Main from './../Main/Main.jsx';
+import Dashboard from '../Dashboard/Dashboard.jsx';
+import Customers from '../Customers/Customers.jsx';
 import Login from './../Login/Login.jsx';
 import Security from './../Security/Security.jsx';
+import Users from './../Users/Users.jsx';
 import Loading from './../Loading/Loading.jsx';
 import {
     BrowserRouter as Router,
@@ -20,8 +22,11 @@ export class App extends Component{
             <div>
                 <Router>
                     <div>
-                        <Route exact path="/" component={Main}/>
+                        <Route exact path="/" component={Dashboard}/>
+                        <Route exact path="/customers" component={Customers}/>
                         <Route path="/login" component={Login}/>
+                        <Route path="/dashboard" component={Dashboard}/>
+                        <Route path="/users" component={Users}/>
                         <Security/>
                         {
                             this.props.loading && (

@@ -1,10 +1,11 @@
-export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+import { SET_CURRENT_USER, LOGIN_USER } from '../constants/user'
 
 // The initial user state
 const initialState = {
     user: {
-        username: '',
-        password: ''
+        email: '',
+        token: '',
+        role: ''
     },
     loggedIn: false,
     errorMessage: ''
@@ -14,9 +15,10 @@ const initialState = {
 export function userReducer(state = initialState, action) {
     switch (action.type) {
         case SET_CURRENT_USER:
-            return assign({}, state, {
-                user: action.user
-            });
+            return {...state, user: action.user, loggedIn: true};
+            break;
+        case LOGIN_USER:
+            return {...state, user: action.user, loggedIn: true};
             break;
         default:
             return state;

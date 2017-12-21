@@ -3,6 +3,7 @@ import {
     Redirect
 } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 export class Security extends Component{
   constructor(props) {
@@ -13,8 +14,13 @@ export class Security extends Component{
     return (
         <div>
             {
-                ! this.props.reducers.userReducer.loggedIn && (
+                ! this.props.loggedIn && (
                     <Redirect to='/login' />
+                )
+            }
+            {
+                this.props.loggedIn && (
+                    <Redirect to='/' />
                 )
             }
         </div>
@@ -23,11 +29,17 @@ export class Security extends Component{
 }
 
 // Subscribe State
-function select(state) {
+function mapStateToProps(state) {
     return {
-        reducers: state
+        loggedIn: state.userReducer.loggedIn
     };
 }
 
+const actionCreators = {
+};
+
+// actionCreators
+const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
+
 // Wrap the component to inject dispatch and state into it
-export default connect(select)(Security);
+export default connect(mapStateToProps, mapDispatchToProps)(Security);

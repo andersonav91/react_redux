@@ -5,6 +5,7 @@ import {
 import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from "react-bootstrap";
 import { connect } from 'react-redux';
 import "./Toolbar.scss";
+import { bindActionCreators } from 'redux';
 
 export class Toolbar extends Component {
 
@@ -16,7 +17,7 @@ export class Toolbar extends Component {
         return (
             <div>
                 {
-                    this.props.reducers.appReducer.loading && (
+                    this.props.loading && (
                         <div className="loading">Loading</div>
                     )
                 }
@@ -36,11 +37,18 @@ export class Toolbar extends Component {
 }
 
 // Subscribe State
-function select(state) {
+function mapStateToProps(state) {
     return {
-        reducers: state
+        loading: state.appReducer.loading
     };
 }
 
+const actionCreators = {
+};
+
+// actionCreators
+const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
+
 // Wrap the component to inject dispatch and state into it
-export default connect(select)(Toolbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Toolbar);
+

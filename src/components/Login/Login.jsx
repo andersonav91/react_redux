@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap"
 import "./Login.scss";
 import { connect } from 'react-redux';
-import { loginUserToStore } from '../../actions/user';
+import { bindActionCreators } from 'redux';
+import { loginUserToStore, setCurrentUserToStore } from '../../actions/user';
 
 export class Login extends Component{
 
@@ -15,6 +16,13 @@ export class Login extends Component{
                 password: ""
             }
         };
+
+        let currentUser = localStorage.getItem('currentUser');
+
+        if(currentUser != null && currentUser != undefined){
+            const { setCurrentUserToStore } = this.props;
+            setCurrentUserToStore(JSON.parse(currentUser));
+        }
     }
 
     validateForm() {
@@ -32,9 +40,8 @@ export class Login extends Component{
     }
 
     handleLogin = event => {
-        console.log(this.props.reducers);
-        const dispatch = this.props.dispatch;
-        this.props.dispatch(loginUserToStore(this.state.user));
+        const { loginUserToStore } = this.props;
+        loginUserToStore(this.state.user);
         event.preventDefault();
     }
 
@@ -73,11 +80,18 @@ export class Login extends Component{
 }
 
 // Subscribe State
-function select(state) {
+function mapStateToProps(state) {
     return {
-        reducers: state
     };
 }
 
+const actionCreators = {
+    loginUserToStore,
+    setCurrentUserToStore
+};
+
+// actionCreators
+const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
+
 // Wrap the component to inject dispatch and state into it
-export default connect(select)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
